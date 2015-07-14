@@ -11,7 +11,7 @@ struct Lista {
     Element *glowa, *ogon;
 };
 
-void add_head(Lista*,int skrzynka);
+void dodaj_glowe(Lista*,int);
 
 void print(Lista*);
 void print(Element*);

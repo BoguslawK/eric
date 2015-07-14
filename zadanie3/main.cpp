@@ -6,21 +6,15 @@ using namespace std;
 
 int main()
 {
-    Lista l;
-    l.glowa = NULL;
-    l.ogon = NULL;
-    l.ilosc=0;
+    Lista l = Lista();
 
-
-    add_head(&l, 777);
-    cout << "JEDEN ELEMENT (777): " << endl;
-    //print(&l);
-    //print(&l);
-
-    add_head(&l, 666);
-
-    cout << "DWA: 777,666: " << endl;
+    dodaj_glowe(&l, 77);
 
     print(&l);
+
+    dodaj_glowe(&l, 66);
+
+    print(&l);
+
 
 }
