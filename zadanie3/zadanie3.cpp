@@ -48,11 +48,40 @@ void dodaj_ogon(Lista* l,int skrzynka)
 
 }
 
-Element* znajdz_wartosc(Lista* l,int x)
+Element* znajdz_element(Lista* l,int x)
 {
     Element* e = l->glowa;
 
-    return e;
+    while(e != NULL)
+    {
+        if(e->skrzynka == x) return e;
+        e = e->next;
+    }
+    std::cout << std::endl << "Nie znaleziono elementu: " << x << std::endl;
+    return NULL;
+}
+
+bool usun_element(Lista* l, Element* usun)
+{
+	Element *e = l->glowa;
+
+	if(usun == l->glowa) {
+		l->glowa = e->next;
+		delete usun;
+		l->ilosc--;
+		return true;
+	}
+
+	while(e != NULL) {
+		if(e->next == usun) {
+			e->next = usun->next;
+			delete usun;
+			l->ilosc--;
+			return true;
+		}
+		e = e->next;
+	}
+	return false;
 }
 
 
