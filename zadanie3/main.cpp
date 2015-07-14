@@ -7,6 +7,9 @@ using namespace std;
 int main()
 {
     Lista l = Lista();
+    l.glowa = NULL;
+    l.ogon = NULL;
+    l.ilosc = 0;
 
     dodaj_glowe(&l, 77);
 

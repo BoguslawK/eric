@@ -6,12 +6,18 @@ void dodaj_glowe(Lista* l,int skrzynka)
 
     Element *e = new Element;
 
+    e->next = NULL;
     e->skrzynka = skrzynka;
 
     if(l->ilosc > 0){
         e->next = l->glowa;
     }
     l->glowa = e;
+
+    if(l->ogon == NULL)
+    {
+        l->ogon = e;
+    }
 
     l->ilosc++;
 }
@@ -24,13 +30,15 @@ void dodaj_ogon(Lista* l,int skrzynka)
     e->skrzynka = skrzynka;
     e->next = NULL;
 
-    if(l->ilosc > 0){
+    if(l->ilosc > 0 && l->ogon){
         Element* tail = l->ogon;
         if(tail->next == NULL){
-            head->next = e;
+            tail->next = e;
+        }else{
+            std::cerr << "ERR: next ogona powinno byc NULL!";
         }
     }
-    l->tail = e;
+    l->ogon = e;
 
     if(l->glowa == NULL){
         l->glowa = e;
@@ -44,6 +52,7 @@ Element* znajdz_wartosc(Lista* l,int x)
 {
     Element* e = l->glowa;
 
+    return e;
 }
 
 
