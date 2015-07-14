@@ -6,22 +6,18 @@ using namespace std;
 
 int main()
 {
-    Element e1;
-    e1.skrzynka = 666;
-
-    Element e2;
-    e2.skrzynka = 777;
-
     Lista l;
+    l.glowa = NULL;
+    l.ogon = NULL;
+    l.ilosc=0;
 
 
-    add_head(&l, &e2);
+    add_head(&l, 777);
     cout << "JEDEN ELEMENT (777): " << endl;
-    print(&l);
+    //print(&l);
+    //print(&l);
 
-    print(&l);
-
-    add_head(&l, &e1);
+    add_head(&l, 666);
 
     cout << "DWA: 777,666: " << endl;
 

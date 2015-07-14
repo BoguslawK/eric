@@ -1,6 +1,30 @@
 #include "zadanie3.hpp"
 #include <iostream>
-//void add_head(Lista*,Element*);
+
+void add_head(Lista* l,int skrzynka)
+{
+    Element e;
+    e.next = NULL;
+    e.skrzynka = skrzynka;
+
+    std::cout << "TAIL: " << l->ogon->skrzynka;
+
+    if(l->glowa != NULL){
+        Element* head = l->glowa;
+        head->next = &e;
+    }
+    l->glowa = &e;
+
+    if(l->ogon == NULL){
+        std::cout << "Setting tail: " << e.skrzynka;
+        l->ogon = &e;
+    }
+
+    l->ilosc++;
+}
+
+
+/* ------ PRINT ------ */
 
 void print(Element* e)
 {
@@ -23,27 +47,15 @@ void print(Lista* l)
 
 void printnext(Element* e)
 {
-    if(e->next == NULL)
-    {
+
+    if(e == NULL){
+        std::cout << " Element[NULL]";
+    }else if(e->next == NULL){
         print(e);
     }else{
+        print(e);
         printnext(e->next);
     }
 }
 
-
-void add_head(Lista* l,Element* e)
-{
-    if(l->glowa != NULL){
-        Element* head = l->glowa;
-        head->next = e;
-    }
-    l->glowa = e;
-
-    if(l->ogon == NULL){
-        l->ogon = e;
-    }
-
-    l->ilosc++;
-}
 
