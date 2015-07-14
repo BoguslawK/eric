@@ -24,6 +24,21 @@ void dodaj_glowe(Lista* l,int skrzynka)
 }
 
 
+void dodaj_ogon(Lista* l,int skrzynka)
+{
+    Element *e = new Element;
+
+    e->skrzynka = skrzynka;
+
+    if(l->ilosc > 0){
+        e->next = l->ogon;
+    }
+    l->ogon = e;
+
+    l->ilosc++;
+}
+
+
 /* ------ PRINT ------ */
 
 void print(Element* e)

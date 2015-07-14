@@ -13,8 +13,10 @@ int main()
     print(&l);
 
     dodaj_glowe(&l, 66);
-
+    dodaj_glowe(&l, 55);
     print(&l);
 
+    dodaj_ogon(&l, 44);
 
+    print(&l);
 }
