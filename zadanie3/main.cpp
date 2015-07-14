@@ -2,8 +2,6 @@
 
 #include "zadanie3.hpp"
 
-using namespace std;
-
 int main()
 {
     Element e1;
@@ -14,10 +12,8 @@ int main()
 
     Lista l;
 
+    std::cout << "ADD_HEAD: 777,666: " << std::endl;
     add_head(&l, &e2);
-
-    print(&l);
-
     add_head(&l, &e1);
 
     print(&l);
