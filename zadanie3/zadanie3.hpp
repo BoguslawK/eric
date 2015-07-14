@@ -14,6 +14,8 @@ struct Lista {
 void dodaj_glowe(Lista*,int);
 void dodaj_ogon(Lista*,int);
 
+Element* znajdz_wartosc(Lista*,int);
+
 void print(Lista*);
 void print(Element*);
 void printnext(Element*);

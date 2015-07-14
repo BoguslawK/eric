@@ -3,22 +3,15 @@
 
 void dodaj_glowe(Lista* l,int skrzynka)
 {
+
     Element *e = new Element;
 
     e->skrzynka = skrzynka;
-    e->next = NULL;
 
     if(l->ilosc > 0){
-        Element* head = l->glowa;
-        if(head->next == NULL){
-            head->next = e;
-        }
+        e->next = l->glowa;
     }
     l->glowa = e;
-
-    if(l->ogon == NULL){
-        l->ogon = e;
-    }
 
     l->ilosc++;
 }
@@ -29,13 +22,28 @@ void dodaj_ogon(Lista* l,int skrzynka)
     Element *e = new Element;
 
     e->skrzynka = skrzynka;
+    e->next = NULL;
 
     if(l->ilosc > 0){
-        e->next = l->ogon;
+        Element* tail = l->ogon;
+        if(tail->next == NULL){
+            head->next = e;
+        }
     }
-    l->ogon = e;
+    l->tail = e;
+
+    if(l->glowa == NULL){
+        l->glowa = e;
+    }
 
     l->ilosc++;
+
+}
+
+Element* znajdz_wartosc(Lista* l,int x)
+{
+    Element* e = l->glowa;
+
 }
 
 
@@ -48,10 +56,16 @@ void print(Element* e)
 
 void print(Lista* l)
 {
-    if(l->ogon != NULL){
+    if(l->glowa != NULL){
         std::cout << std::endl<< "Lista("<< l->ilosc <<")[" << std::endl;
 
-        printnext(l->ogon);
+        Element* e = l->glowa;
+
+        while(e != NULL)
+        {
+            print(e);
+            e = e->next;
+        }
 
         std::cout << "]" << std::endl ;
     }else{
@@ -59,17 +73,3 @@ void print(Lista* l)
     }
 
 }
-
-void printnext(Element* e)
-{
-    if(e == NULL){
-        std::cout << " Element[NULL]";
-    }else if(e->next == NULL){
-        print(e);
-    }else{
-        print(e);
-        printnext(e->next);
-    }
-}
-
-
