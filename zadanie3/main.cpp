@@ -23,17 +23,17 @@ int main()
 
     print(&l);
 
-    Element *e55 = znajdz_element(&l, 55);
+    Element *e66 = znajdz_element(&l, 66);
 
-    cout << "szukam 55";
-    print(e55);
+    cout << "szukam 66";
+    print(e66);
 
     Element *s2 = znajdz_element(&l, 66666);
 
 
-    cout << "usuwam 55.";
-    if(usun_element(&l,e55)){
-        cout << "Po usunieciu:";
+    cout << "usuwam 66.";
+    if(usun_element(&l,e66)){
+        cout << " Po usunieciu:";
         print(&l);
     }else{
         cerr << "Blad podczas usuwania elementu z listy!";
