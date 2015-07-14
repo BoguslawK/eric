@@ -11,20 +11,24 @@ void print(Lista* l)
 {
     if(l->ogon != NULL){
         std::cout << std::endl<< "Lista("<< l->ilosc <<")[" << std::endl;
-        Element* e = l->ogon;
 
-
-        for(int i=0;i<l->ilosc;i++)
-        {
-            print(e);
-            e = e->next;
-        }
+        printnext(l->ogon);
 
         std::cout << "]" << std::endl ;
     }else{
         std::cout << std::endl<< "Lista[-pusta-]" << std::endl;
     }
 
+}
+
+void printnext(Element* e)
+{
+    if(e->next == NULL)
+    {
+        print(e);
+    }else{
+        printnext(e->next);
+    }
 }
 
 

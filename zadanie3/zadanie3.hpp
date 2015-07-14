@@ -13,7 +13,9 @@ struct Lista {
 
 void add_head(Lista*,Element*);
 
-void print(Element*);
 void print(Lista*);
+void print(Element*);
+void printnext(Element*);
+
 
 #endif
