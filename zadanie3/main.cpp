@@ -28,7 +28,7 @@ int main()
     cout << "szukam 66";
     print(e66);
 
-    Element *s2 = znajdz_element(&l, 66666);
+    znajdz_element(&l, 66666);
 
 
     cout << "usuwam 66.";
