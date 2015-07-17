@@ -10,7 +10,7 @@
 #define FIELD_FIRED 2
 #define FIELD_SHIP_HIT 3
 #define FIELD_SHIP_DESTROYED 4
-#define RANDOM_SHIP_GENERATOR_MAX_ATTEMPTS 10000000
+#define RANDOM_SHIP_GENERATOR_MAX_ATTEMPTS 1000000
 
 class Statek;
 class Pole;
@@ -24,6 +24,8 @@ class Statki {
          * Sprawdz czy pole jest wolne i mozna postawic element statku.
          */
         bool check_field(int,int);
+
+        bool check_placement(int x, int y, int size, Statek*);
     public:
         /**
          * Dodaj statek o podanej wielkosci
