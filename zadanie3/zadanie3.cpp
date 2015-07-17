@@ -84,6 +84,35 @@ bool usun_element(Lista* l, Element* usun)
 	return false;
 }
 
+void swap(Element* a,Element* b)
+{
+    Element tmp;
+    Element *tmpe;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+
+    tmpe = a->next;
+    a->next = b->next;
+    b->next = tmpe;
+}
+
+void sort(Lista* l)
+{
+    sort(l->glowa);
+}
+
+void sort(Element* head)
+{
+    if(head->next == NULL) return;
+
+    sort(head->next);
+
+    if(head->skrzynka < head->next->skrzynka){
+        swap(head, head->next);
+        sort(head);
+    }
+}
 
 /* ------ PRINT ------ */
 

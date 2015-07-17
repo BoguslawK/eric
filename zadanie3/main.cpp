@@ -39,4 +39,18 @@ int main()
         cerr << "Blad podczas usuwania elementu z listy!";
     }
 
+    cout << "Dodaje elementy w randomowej kolejnosci:";
+
+    dodaj_ogon(&l,1231);
+    dodaj_ogon(&l,2);
+    dodaj_ogon(&l,13);
+    dodaj_ogon(&l,8);
+    dodaj_ogon(&l,4);
+    dodaj_ogon(&l,18);
+
+
+    cout << "Sortuje:";
+
+    sort(&l);
+    print(&l);
 }

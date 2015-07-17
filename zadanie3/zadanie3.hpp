@@ -19,7 +19,9 @@ bool usun_element(Lista*, Element*);
 
 void print(Lista*);
 void print(Element*);
-void printnext(Element*);
+void swap(Element*,Element*);
+void sort(Lista*);
+void sort(Element*);
 
 Lista init();
 #endif
