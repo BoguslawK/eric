@@ -9,6 +9,12 @@ int main()
     Statki bs;
 
     bs.add_ship(4);
+    bs.add_ship(3);
+    bs.add_ship(2);
+    bs.add_ship(2);
+    bs.add_ship(1);
+    bs.add_ship(1);
+    bs.add_ship(1);
 
     int x,y;
     int proby=1;
