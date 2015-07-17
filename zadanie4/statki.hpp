@@ -10,6 +10,7 @@
 #define FIELD_FIRED 2
 #define FIELD_SHIP_HIT 3
 #define FIELD_SHIP_DESTROYED 4
+#define RANDOM_SHIP_GENERATOR_MAX_ATTEMPTS 10000000
 
 class Statek;
 class Pole;

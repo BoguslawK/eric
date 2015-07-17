@@ -33,10 +33,17 @@ void Statki::add_ship(int size)
 {
     Statek *s = new Statek(size);
     bool added = false;
-
+    int attempt=0;
     std::cout << "Generuję losowy statek o rozmiarze: " << size <<"...";
     while(added==false)
     {
+        attempt++;
+
+        if(attempt > RANDOM_SHIP_GENERATOR_MAX_ATTEMPTS){
+            std::cerr << std::endl << "Blad! Nie udalo sie umiescic statku po " << RANDOM_SHIP_GENERATOR_MAX_ATTEMPTS << " próbach! Zwiększ rozmiar planszy lub zmniejsz ilosc statków!" << std::endl;
+            exit(1);
+        }
+
         srand(time(0));
         int x = rand() % (BOARD_SIZE-size);
         srand(time(0));
