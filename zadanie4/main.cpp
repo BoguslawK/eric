@@ -23,11 +23,20 @@ int main()
 
     bs.print();
     bool won = false;
+    int result;
     while(!won){
         cout << endl << "Podaj wspolrzedne x i y oddzielone spacja:";
         cin >> y >> x;
-        bs.shoot(x,y);
+        result = bs.shoot(x,y);
         bs.print();
+
+        if(result == FIELD_SHIP_HIT){
+            cout << endl << " -- TRAFIONY! -- " << endl;
+        }else if (result == FIELD_SHIP_DESTROYED){
+            cout << endl << " -- ZATOPIONY! -- " << endl;
+        }else {
+            cout << endl << endl;
+        }
 
         if(bs.won()){
             cout << endl << "!GRATULACJE! Wygrał(a|e)ś w " << proby << " próbach!"<< endl;
