@@ -48,6 +48,7 @@ int main()
     dodaj_ogon(&l,4);
     dodaj_ogon(&l,18);
 
+    print(&l);
 
     cout << "Sortuje:";
 
