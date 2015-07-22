@@ -2,41 +2,27 @@
 //autor
 //sprawdzil
 
-#include "chest.h"
 #include <iostream>
 
 using namespace std;
-/*
-int main() {
-	Item item[3];
-	Chest chest[3];
-	chest[0].set(&item[1]);
-	chest[1].set(&item[2]);
-	chest[2].set(&item[0]);
-
-	for(int c = 0; c<3;c++)
-	{
-		for(int i=0; i<3; i++)
-		{
-			bool belong = item[i].doIBelong(chest[c]);
-			if ( belong )
-			{
-				cout<<"Item "<<i<<" belongs to chest "<<c<<endl;
-				break;
-			}
-		}
-	}
-
-	return 0;
-}
-
-*/
 
 class Towar{
   int nr;
   Towar *next;
 
 public:
+    Towar(const Towar &t)
+    {
+        nr = t.nr;
+
+        if(t.next){
+            next = new Towar(*t.next);
+        }else{
+            next = NULL;
+        }
+
+    }
+
   Towar(int n)
   {
     nr=n;
@@ -46,8 +32,10 @@ public:
 
   ~Towar()
    {
-     cout << "usuwam pudlo nr. " << this->nr;
-       delete this;
+     cout << "usuwam pudlo nr. " << this->nr << endl;
+       if(next){
+           delete next;
+       }
    }
 
   void dodaj(Towar *nowy)
@@ -91,6 +79,20 @@ class Paczka{
 
    }
 
+    Paczka(const Paczka &p)
+    {
+        a = p.a;
+        b = p.b;
+        c = p.c;
+
+        pudlo = new Towar(*p.pudlo);
+    }
+
+    ~Paczka()
+    {
+        delete pudlo;
+    }
+
   void dodaj(int n)
   {
       Towar *dodany = new Towar(n);
@@ -116,12 +118,17 @@ int main() {
     pp.dodaj(5);
     pp.dodaj(-3);
 
+    cout << endl << ">>> pierwsza paczka 'pp' 2,5,-3:" << endl;
     pp.wypis();
 
     Paczka qq=pp;
+
+    cout << endl << ">>> druga paczka 'qq', kopia 2,5,-3:" << endl;
     qq.wypis();
 
     qq.dodaj(11);
+
+    cout << endl << ">>> pierwsza paczka pp po dodaniu 11 do qq:" << endl;
     pp.wypis();
 	return 0;
 }
