@@ -112,7 +112,9 @@ void Statki::mark_destroyed(Statek *s)
                 // zaznacz pola dookola statku jako strzelone, bo nie moga sie stykac:
                 for(int ii=i-1;ii<=i+1;ii++){
                     for(int jj=j-1;jj<=j+1;jj++){
-                        board[ii][jj]->mark_fired(s);
+                        if(ii >=0 && ii< BOARD_SIZE && jj >= 0 && jj < BOARD_SIZE){
+                            board[ii][jj]->mark_fired(s);
+                        }
                     }
                 }
             }
