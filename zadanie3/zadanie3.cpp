@@ -57,7 +57,7 @@ Element* znajdz_element(Lista* l,int x)
         if(e->skrzynka == x) return e;
         e = e->next;
     }
-    std::cout << std::endl << "Nie znaleziono elementu: " << x << std::endl;
+    //std::cout << std::endl << "Nie znaleziono elementu: " << x << std::endl;
     return NULL;
 }
 
