@@ -32,8 +32,8 @@ void dodaj_ogon(Lista* l,int skrzynka)
 
     if(l->ilosc > 0 && l->ogon){
         Element* tail = l->ogon;
-        if(tail->next == NULL){
-            tail->next = e;
+        if(l->ogon->next == NULL){
+            l->ogon->next = e;
         }else{
             std::cerr << "ERR: next ogona powinno byc NULL!";
         }
@@ -67,6 +67,7 @@ bool usun_element(Lista* l, Element* usun)
 
 	if(usun == l->glowa) {
 		l->glowa = e->next;
+        usun->next = NULL;
 		delete usun;
 		l->ilosc--;
 		return true;
@@ -75,6 +76,7 @@ bool usun_element(Lista* l, Element* usun)
 	while(e != NULL) {
 		if(e->next == usun) {
 			e->next = usun->next;
+            usun->next = NULL;
 			delete usun;
 			l->ilosc--;
 			return true;
@@ -84,33 +86,68 @@ bool usun_element(Lista* l, Element* usun)
 	return false;
 }
 
-void swap(Element* a,Element* b)
-{
-    Element tmp;
-    Element *tmpe;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-
-    tmpe = a->next;
-    a->next = b->next;
-    b->next = tmpe;
-}
-
 void sort(Lista* l)
 {
-    sort(l->glowa);
+    sort(&(l->glowa));
 }
 
-void sort(Element* head)
+
+/**
+ * W przeciwieństwie do poprzedniej wersji, zamiast zamieniac wskazniki,
+ * zamieniamy wskazniki do wskaznikow
+ * metoda 'bubble' : http://www.sorting-algorithms.com/
+ */
+void sort(Element** pp)
 {
-    if(head->next == NULL) return;
+    // p zawsze wskazuje na glowe/head
+    Element *p = *pp;
+    *pp = nullptr;
 
-    sort(head->next);
+    while (p)
+    {
+        Element **lhs = &p;
+        Element **rhs = &p->next;
+        bool swapped = false;
 
-    if(head->skrzynka < head->next->skrzynka){
-        swap(head, head->next);
-        sort(head);
+        // dopoki nie dodziemy do konca listy (*rhs bedzie nullptr)
+        while (*rhs)
+        {
+            if ((*rhs)->skrzynka < (*lhs)->skrzynka)
+            {
+                // najpierw zamieniamy elementy listy
+                std::swap(*lhs, *rhs);
+                // a potem zamieniamy spowrotem wskazniki do 'nastepnych'
+                std::swap((*lhs)->next, (*rhs)->next);
+
+                // przechodzimy do nastepnego:
+                lhs = &(*lhs)->next;
+                swapped = true;
+            }
+            else
+            {
+                // bez zmian, obydwa wskazniki o 1 w przod:
+                lhs = rhs;
+                rhs = &(*rhs)->next;
+            }
+        }
+
+        // ostatni element do posortowanego segmentu:
+        *rhs = *pp;
+
+        // jesli zamienione, odlaczamy ostatni element, konczymi liste i przechodzimy dalej:
+        if (swapped)
+        {
+            // bierzemy ostatni element z listy i dodajemy do wyniku:
+            *pp = *lhs;
+            *lhs = nullptr;
+        }
+        else
+        {
+            // a jak nie zamienione, to zrobione. Nie bylo zamian, wiec lista jest posortowana
+            // przypisujemy wynik i konczymy petle:
+            *pp = p;
+            break;
+        }
     }
 }
 
@@ -118,7 +155,7 @@ void sort(Element* head)
 
 void print(Element* e)
 {
-    std::cout << " Element[skrzynka='" << e->skrzynka << "']" << std::endl;
+    std::cout << " Element[adres="<<e<<" skrzynka='" << e->skrzynka << "' next="<< e->next<<"]" << std::endl;
 }
 
 void print(Lista* l)
