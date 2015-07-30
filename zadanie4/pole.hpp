@@ -18,7 +18,7 @@ class Pole {
         std::string str();
         std::string str_reveal();
         int get_status();
-        int mark_destroyed(Statek*);
+        bool mark_destroyed(Statek*);
         void mark_fired(Statek*);
 };
 
