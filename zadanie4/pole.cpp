@@ -64,7 +64,7 @@ int Pole::hit(Statki *bs)
         if(status == FIELD_SHIP_DESTROYED){
             bs->mark_destroyed(ship);
         }
-    }else{
+    }else if(status == FIELD_EMPTY){
         status = FIELD_FIRED;
     }
 
