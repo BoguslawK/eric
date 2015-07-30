@@ -13,12 +13,14 @@ private:
     int ilosc_towaru() const;
 
 public:
+    static int ile;
 
     Towar(const Towar &t);
     Towar(int n);
 
     ~Towar()
     {
+        Towar::ile--;
         std::cout << "  ~usuwam pudlo nr. " << this->nr << " pod adresem " << this <<  std::endl;
         if (next)
         {

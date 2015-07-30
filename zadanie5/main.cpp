@@ -14,7 +14,7 @@ int main() {
     Paczka p1,p2;
     int input,menu;
 
-    while(menu != 10) {
+    while(menu != 11) {
         cout << endl << "-----------------------------------------------------------" << endl;
         cout << "1) Wyswietlenie paczki 1" << endl;
         cout << "2) Wyswietlenie paczki 2" << endl;
@@ -25,7 +25,8 @@ int main() {
         cout << "7) Przypisanie paczki 1 do 2 (konstruktor kopiujacy p2=p1)" << endl;
         cout << "8) Porównanie paczek 1 i 2 (p1==p2)" << endl;
         cout << "9) Wypisanie ilości instancji paczek (zmienna statyczna)" << endl;
-        cout << "10) Wyjście" << endl;
+        cout << "10) Wypisanie ilości instancji towarów (zmienna statyczna)" << endl;
+        cout << "11) Wyjście" << endl;
         cout << "===========================================================" << endl;
 
         cin >> menu;
@@ -64,6 +65,9 @@ int main() {
                 break;
             case 9:
                 cout << "  Ilość instancji clasy Paczka: " << Paczka::ile << endl;;
+                break;
+            case 10:
+                cout << "  Ilość instancji clasy Towar: " << Towar::ile << endl;;
                 break;
         }
     }

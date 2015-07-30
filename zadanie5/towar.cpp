@@ -1,6 +1,7 @@
 
 #include"towar.hpp"
 
+int Towar::ile = 0;
 
 int Towar::ilosc_towaru() const
     {
@@ -16,6 +17,7 @@ int Towar::ilosc_towaru() const
 
 Towar::Towar(const Towar &t)
     {
+        Towar::ile++;
         nr = t.nr;
 
         if (t.next)
@@ -31,9 +33,10 @@ Towar::Towar(const Towar &t)
 
 Towar::Towar(int n)
     {
+        Towar::ile++;
         nr = n;
         next = NULL;
-         std::cout << "zrobione pudlo " << n <<  std::endl;
+        std::cout << "zrobione pudlo " << n <<  std::endl;
     }
 
 void Towar::dodaj(Towar *nowy)
