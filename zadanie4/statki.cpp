@@ -108,7 +108,7 @@ void Statki::mark_destroyed(Statek *s)
     ships_destroyed++;
     for(int i=0;i<BOARD_SIZE;i++){
         for(int j=0;j<BOARD_SIZE;j++){
-            if(board[i][j]->mark_destroyed(s) == FIELD_SHIP_DESTROYED){
+            if(board[i][j]->mark_destroyed(s)){
                 // zaznacz pola dookola statku jako strzelone, bo nie moga sie stykac:
                 for(int ii=i-1;ii<=i+1;ii++){
                     for(int jj=j-1;jj<=j+1;jj++){

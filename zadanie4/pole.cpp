@@ -71,19 +71,23 @@ int Pole::hit(Statki *bs)
     return status;
 }
 
-int Pole::mark_destroyed(Statek *s)
+bool Pole::mark_destroyed(Statek *s)
 {
     if(ship == s){
         status = FIELD_SHIP_DESTROYED;
+        return true;
     }
-    return status;
+    return false;
 }
 
 void Pole::mark_fired(Statek *s)
 {
     if(status == FIELD_EMPTY || status == FIELD_FIRED){
         status = FIELD_FIRED;
-    }else if(ship != s){
+    }else if(s && ship != s){
+        std::cerr << "stetek: " << s->get_size() << ":" << s->is_hit() << std::endl;
+        std::cerr << "stetek2: " << ship->get_size() << ":" << ship->is_hit() << std::endl;
+        std::cerr << "s1: " << ship << " s2: " << s << std::endl;
         std::cerr << "Błąd! Pole powinno byc puste!" << status << std::endl;
     }
 }
