@@ -18,7 +18,7 @@ public:
 
     ~Paczka()
     {
-        ile--;
+        Paczka::ile--;
         delete pudlo;
     }
 
