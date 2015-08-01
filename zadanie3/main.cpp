@@ -1,15 +1,17 @@
+//struktura lista obiektowo
+//
+// Autor: Bogusław Konieczny
+//Sprawdził::
+
 #include <iostream>
 
-#include "zadanie3.hpp"
+#include "obiektLista.hpp"
 
 using namespace std;
 
 int main()
 {
-    Lista l = Lista();
-    l.glowa = NULL;
-    l.ogon = NULL;
-    l.ilosc = 0;
+    Lista l ;
 
     int menu=0;
     int input;
@@ -28,55 +30,64 @@ int main()
 
 
         cin >> menu;
-        e = nullptr;
+        e = NULL;
 
-        switch(menu){
+        switch(menu)
+        {
             case 1:
-                print(&l);
+                l.print();
                 break;
             case 2:
-                cout  << "  > Podaj wartość elementu do dodania: ";
+                cout  << "  > Podaj wartosc elementu do dodania: ";
 
                 cin >> input;
-                dodaj_ogon(&l,input);
+                l.dodaj_ogon(input);
                 cout  << "  > Dodano." << endl;
                 break;
             case 3:
-                cout  << "  > Podaj wartość elementu do dodania: ";
+                cout  << "  > Podaj wartosc elementu do dodania: ";
 
                 cin >> input;
-                dodaj_glowe(&l,input);
+                l.dodaj_glowe(input);
                 cout  << "  > Dodano." << endl;
                 break;
             case 4:
-                cout  << "  > Podaj wartość elementu do znalezienia: ";
+                cout  << "  > Podaj wartosc elementu do znalezienia: ";
 
                 cin >> input;
-                e = znajdz_element(&l, input);
-                if(e){
+                e = l.znajdz_element(input);
+                if(e)
+                {
                     cout  << "  > Znaleziony element to: " << endl;
-                    print(e);
-                }else{
+                    e->print();
+                }
+                else
+                {
                     cout  << "  > Nie znaleziono elementu dla wartosci " << input << endl;
                 }
                 break;
             case 5:
-                sort(&l);
+                l.sort();
                 cout  << "  > Posortowano." << endl;
                 break;
             case 6:
-                cout  << "  > Podaj wartość elementu do usunięcia: ";
+                cout  << "  > Podaj wartosc elementu do usuniecia: ";
 
                 cin >> input;
-                e = znajdz_element(&l, input);
+                e = l.znajdz_element(input);
 
                 if(e){
-                    if(usun_element(&l, e)){
+                    if(l.usun_element(e))
+                    {
                         cout  << "  > Usunieto." << endl;
-                    }else{
-                        cerr  << "  ! Wystąpił błąd podczas usuwania elementu "<< input << endl;
                     }
-                }else{
+                    else
+                    {
+                        cerr  << "  ! Wystapil blad podczas usuwania elementu "<< input << endl;
+                    }
+                }
+                else
+                {
                     cout  << "  > Nie znaleziono elementu dla wartosci " << input << endl;
                 }
                 break;
@@ -84,4 +95,5 @@ int main()
 
 
     }
+return 0;
 }
