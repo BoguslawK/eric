@@ -10,8 +10,13 @@ struct Element
     int skrzynka;
     Element* next;
 
+    void print();
+
     ~Element()
     {
+        std::cout << "  ~ usuwam element: ";
+        print();
+
         if(next) delete next; // usuniecie nastepnego elementu do ogona
     }
 };
@@ -19,7 +24,10 @@ struct Element
 
 class Lista //struct Lista
 {
-    public:
+private:
+    void sort(Element**);
+
+public:
     int ilosc;
     Element *glowa, *ogon;
 
@@ -27,40 +35,25 @@ class Lista //struct Lista
     {
     glowa = NULL;
     ogon = NULL;
+    ilosc=0;
     }
 
     ~Lista()
     {
+        std::cout << "  ~ usuwam listę: " << this << std::endl;
         delete glowa; // ogon powinien byc usuniety przez destruktor w strukturze Element
     }
 
-void dodaj_glowe(Lista*,int);
-void dodaj_ogon(Lista*,int);
+void dodaj_glowe(int);
+void dodaj_ogon(int);
 
-// Element* znajdz_element(Lista*,int);
-bool usun_element(Lista*, Element*);
+Element* znajdz_element(int);
+bool usun_element(Element*);
 
-void print(Lista*);
-void print(Element*);
-void sort(Lista*);
-void sort(Element**);
+void print();
+void sort();
+
 
 
 };
-Element* znajdz_element(Lista*,int);
-
-/*
-void dodaj_glowe(Lista*,int);
-void dodaj_ogon(Lista*,int);
-
-Element* znajdz_element(Lista*,int);
-bool usun_element(Lista*, Element*);
-
-void print(Lista*);
-void print(Element*);
-void sort(Lista*);
-void sort(Element**);
-
-Lista init();
-*/
 #endif

@@ -11,10 +11,7 @@ using namespace std;
 
 int main()
 {
-    Lista l ;//= Lista();
-    //l.glowa = NULL;
-   // l.ogon = NULL;
-    l.ilosc = 0;
+    Lista l ;
 
     int menu=0;
     int input;
@@ -38,31 +35,31 @@ int main()
         switch(menu)
         {
             case 1:
-                l.print(&l);
+                l.print();
                 break;
             case 2:
                 cout  << "  > Podaj wartosc elementu do dodania: ";
 
                 cin >> input;
-                l.dodaj_ogon(&l,input);
+                l.dodaj_ogon(input);
                 cout  << "  > Dodano." << endl;
                 break;
             case 3:
                 cout  << "  > Podaj wartosc elementu do dodania: ";
 
                 cin >> input;
-                l.dodaj_glowe(&l,input);
+                l.dodaj_glowe(input);
                 cout  << "  > Dodano." << endl;
                 break;
             case 4:
                 cout  << "  > Podaj wartosc elementu do znalezienia: ";
 
                 cin >> input;
-                e = znajdz_element(&l, input);
+                e = l.znajdz_element(input);
                 if(e)
                 {
                     cout  << "  > Znaleziony element to: " << endl;
-                    l.print(e);
+                    e->print();
                 }
                 else
                 {
@@ -70,17 +67,17 @@ int main()
                 }
                 break;
             case 5:
-                l.sort(&l);
+                l.sort();
                 cout  << "  > Posortowano." << endl;
                 break;
             case 6:
                 cout  << "  > Podaj wartosc elementu do usuniecia: ";
 
                 cin >> input;
-                e = znajdz_element(&l, input);
+                e = l.znajdz_element(input);
 
                 if(e){
-                    if(l.usun_element(&l, e))
+                    if(l.usun_element(e))
                     {
                         cout  << "  > Usunieto." << endl;
                     }

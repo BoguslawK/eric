@@ -2,7 +2,7 @@
 #include "obiektLista.hpp"
 #include <iostream>
 
-void Lista::dodaj_glowe(Lista* l,int skrzynka)
+void Lista::dodaj_glowe(int skrzynka)
 {
 
     Element *e = new Element;
@@ -10,54 +10,54 @@ void Lista::dodaj_glowe(Lista* l,int skrzynka)
     e->next = NULL;
     e->skrzynka = skrzynka;
 
-    if(l->ilosc > 0)
+    if(this->ilosc > 0)
     {
-        e->next = l->glowa;
+        e->next = this->glowa;
     }
-    l->glowa = e;
+    this->glowa = e;
 
-    if(l->ogon == NULL)
+    if(this->ogon == NULL)
     {
-        l->ogon = e;
+        this->ogon = e;
     }
 
-    l->ilosc++;
+    this->ilosc++;
 }
 
 
-void Lista::dodaj_ogon(Lista* l,int skrzynka)
+void Lista::dodaj_ogon(int skrzynka)
 {
     Element *e = new Element;
 
     e->skrzynka = skrzynka;
     e->next = NULL;
 
-    if(l->ilosc > 0 && l->ogon)
+    if(this->ilosc > 0 && this->ogon)
     {
-        //Element* tail = l->ogon;
-        if(l->ogon->next == NULL)
+        //Element* tail = this->ogon;
+        if(this->ogon->next == NULL)
         {
-            l->ogon->next = e;
+            this->ogon->next = e;
         }
         else
         {
             std::cerr << "ERR: next ogona powinno byc NULL!";
         }
     }
-    l->ogon = e;
+    this->ogon = e;
 
-    if(l->glowa == NULL)
+    if(this->glowa == NULL)
     {
-        l->glowa = e;
+        this->glowa = e;
     }
 
-    l->ilosc++;
+    this->ilosc++;
 
 }
 
-Element* znajdz_element(Lista* l,int x)
+Element* Lista::znajdz_element(int x)
 {
-    Element* e = l->glowa;
+    Element* e = this->glowa;
 
     while(e != NULL)
     {
@@ -68,16 +68,16 @@ Element* znajdz_element(Lista* l,int x)
     return NULL;
 }
 
-bool Lista::usun_element(Lista* l, Element* usun)
+bool Lista::usun_element(Element* usun)
 {
-	Element *e = l->glowa;
+	Element *e = this->glowa;
 
-	if(usun == l->glowa)
+	if(usun == this->glowa)
 	{
-		l->glowa = e->next;
+        this->glowa = e->next;
         usun->next = NULL; //bez NULL destruktor mogłby usuwać losowe el. wskaznika
 		delete usun;
-		l->ilosc--;
+        this->ilosc--;
 		return true;
 	}
 
@@ -88,7 +88,7 @@ bool Lista::usun_element(Lista* l, Element* usun)
 			e->next = usun->next;
             usun->next = NULL;
 			delete usun;
-			l->ilosc--;
+            this->ilosc--;
 			return true;
 		}
 		e = e->next;
@@ -96,9 +96,9 @@ bool Lista::usun_element(Lista* l, Element* usun)
 	return false;
 }
 
-void Lista::sort(Lista* l)
+void Lista::sort()
 {
-    sort(&(l->glowa));
+    sort(&(this->glowa));
 }
 
 
@@ -163,21 +163,21 @@ void Lista::sort(Element** pp)
 
 /* ------ PRINT ------ */
 
-void Lista::print(Element* e)
+void Element::print()
 {
-    std::cout << " Element[adres="<<e<<" skrzynka='" << e->skrzynka << "' next="<< e->next<<"]" << std::endl;
+    std::cout << " Element[adres="<< this <<" skrzynka='" << this->skrzynka << "' next="<< this->next<<"]" << std::endl;
 }
 
-void Lista::print(Lista* l)
+void Lista::print()
 {
-    if(l->glowa != NULL){
-        std::cout << std::endl<< "Lista("<< l->ilosc <<")[" << std::endl;
+    if(this->glowa != NULL){
+        std::cout << std::endl<< "Lista("<< this->ilosc <<")[" << std::endl;
 
-        Element* e = l->glowa;
+        Element* e = this->glowa;
 
         while(e != NULL)
         {
-            print(e);
+            e->print();
             e = e->next;
         }
 
